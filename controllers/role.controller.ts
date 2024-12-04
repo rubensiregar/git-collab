@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { prisma } from "../config/prisma";
-import { serviceCreateRole, serviceGetRole } from "../services/role.services";
+import {
+    serviceCreateRole,
+    serviceGetRole,
+    serviceUpdateRole,
+} from "../services/role.services";
 
 // lanjut controller di bawah
 export const postRole = async (req: Request, res: Response): Promise<any> => {
@@ -37,20 +41,18 @@ export const getRole = async (req: Request, res: Response): Promise<any> => {
 
 export const patchRole = async (req: Request, res: Response): Promise<any> => {
     try {
-        const updatedRole = await prisma.role.update({
-            data: req.body,
-            where: { id: parseInt(req.params.id) },
-        });
+        const updatedRole = await serviceUpdateRole(req.params.id, req.body);
 
         return res.status(200).send({
-            message: "BERHASIL",
+            message: "BERHASIL update role",
             success: true,
             result: { updatedRole },
         });
     } catch (error: any) {
         return res.status(error.rc ?? 500).send({
-            message: "GAGAL",
+            message: "GAGAL update role",
             success: false,
+            error: error.message,
         });
     }
 };
