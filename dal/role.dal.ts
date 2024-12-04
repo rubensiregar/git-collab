@@ -52,4 +52,17 @@ const updateRole = async (id: any, data: any): Promise<any> => {
     }
 };
 
-export { createNewRole, getListRole, getDetailRole, updateRole };
+const deleteRole = async (id: any): Promise<any> => {
+    try {
+        return await prisma.role.delete({
+            where: { id: parseInt(id) },
+        });
+    } catch (error) {
+        throw {
+            rc: 400,
+            message: "role tidak ditemukan",
+        };
+    }
+};
+
+export { createNewRole, getListRole, getDetailRole, updateRole, deleteRole };

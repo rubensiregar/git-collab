@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../config/prisma";
 import {
     serviceCreateRole,
+    serviceDeleteRole,
     serviceGetRole,
     serviceUpdateRole,
 } from "../services/role.services";
@@ -59,18 +60,17 @@ export const patchRole = async (req: Request, res: Response): Promise<any> => {
 
 export const deleteRole = async (req: Request, res: Response): Promise<any> => {
     try {
-        const newRole = await prisma.role.delete({
-            where: { id: parseInt(req.params.id) },
-        });
+        const deletedRole = await serviceDeleteRole(req.params.id);
         return res.status(200).send({
-            message: "BERHASIL",
+            message: "BERHASIL menghapus role",
             success: true,
-            result: { newRole },
+            result: { deletedRole },
         });
     } catch (error: any) {
         return res.status(error.rc ?? 500).send({
             message: "GAGAL",
             success: false,
+            error: error.message,
         });
     }
 };

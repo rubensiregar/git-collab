@@ -1,5 +1,6 @@
 import {
     createNewRole,
+    deleteRole,
     getDetailRole,
     getListRole,
     updateRole,
@@ -42,10 +43,10 @@ const serviceUpdateRole = async (id: any, data: IRole): Promise<any> => {
     }
 };
 
-const serviceDeleteRole = async (data: IRole): Promise<any> => {
+const serviceDeleteRole = async (id: any): Promise<any> => {
     try {
-        const newUser = await createNewRole;
-        return newUser;
+        const deletedRole = await deleteRole(id);
+        return deletedRole;
     } catch (error) {
         throw error;
     }
