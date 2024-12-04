@@ -15,4 +15,28 @@ const createNewRole = async (data: IRole): Promise<any> => {
     }
 };
 
-export { createNewRole };
+const getListRole = async (): Promise<any> => {
+    try {
+        return await prisma.role.findMany();
+    } catch (error) {
+        throw {
+            rc: 400,
+            message: "gagal get role",
+        };
+    }
+};
+
+const getDetailRole = async (data: any): Promise<any> => {
+    try {
+        return await prisma.role.findUnique({
+            where: { id: parseInt(data.id) },
+        });
+    } catch (error) {
+        throw {
+            rc: 400,
+            message: "gagal get role",
+        };
+    }
+};
+
+export { createNewRole, getListRole, getDetailRole };

@@ -13,6 +13,7 @@ const route = Router();
 // di sini kumpulan router
 route.post("/", postRole);
 route.get("/", getRole);
+route.get("/:id", getRole);
 route.patch("/:id", patchRole);
 route.delete("/:id", deleteRole);
 

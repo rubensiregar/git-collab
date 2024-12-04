@@ -1,4 +1,4 @@
-import { createNewRole } from "../dal/role.dal";
+import { createNewRole, getDetailRole, getListRole } from "../dal/role.dal";
 
 interface IRole {
     name: string;
@@ -13,10 +13,13 @@ const serviceCreateRole = async (data: IRole): Promise<any> => {
     }
 };
 
-const serviceGetRole = async (data: IRole): Promise<any> => {
+const serviceGetRole = async (data: any): Promise<any> => {
     try {
-        const newUser = await createNewRole;
-        return newUser;
+        if (data.id) {
+            return await getDetailRole(data);
+        } else {
+            return await getListRole();
+        }
     } catch (error) {
         throw error;
     }

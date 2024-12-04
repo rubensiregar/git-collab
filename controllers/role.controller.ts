@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../config/prisma";
-import { serviceCreateRole } from "../services/role.services";
+import { serviceCreateRole, serviceGetRole } from "../services/role.services";
 
 // lanjut controller di bawah
 export const postRole = async (req: Request, res: Response): Promise<any> => {
@@ -21,7 +21,7 @@ export const postRole = async (req: Request, res: Response): Promise<any> => {
 
 export const getRole = async (req: Request, res: Response): Promise<any> => {
     try {
-        const roles = await prisma.role.findMany();
+        const roles = await serviceGetRole(req.params);
         return res.status(200).send({
             message: "BERHASIL",
             success: true,
