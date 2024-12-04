@@ -10,7 +10,7 @@ const createNewRole = async (data: IRole): Promise<any> => {
     } catch (error) {
         throw {
             rc: 400,
-            message: "gagal membuat role. data input tidak sesuai",
+            message: "gagal membuat role",
         };
     }
 };
