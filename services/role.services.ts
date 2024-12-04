@@ -6,12 +6,13 @@ interface IRole {
 
 const serviceCreateRole = async (data: IRole): Promise<any> => {
     try {
-        const newUser = await createNewRole;
+        const newUser = await createNewRole(data);
         return newUser;
     } catch (error) {
         throw error;
     }
 };
+
 const serviceGetRole = async (data: IRole): Promise<any> => {
     try {
         const newUser = await createNewRole;
@@ -20,6 +21,7 @@ const serviceGetRole = async (data: IRole): Promise<any> => {
         throw error;
     }
 };
+
 const serviceUpdateRole = async (data: IRole): Promise<any> => {
     try {
         const newUser = await createNewRole;
@@ -28,6 +30,7 @@ const serviceUpdateRole = async (data: IRole): Promise<any> => {
         throw error;
     }
 };
+
 const serviceDeleteRole = async (data: IRole): Promise<any> => {
     try {
         const newUser = await createNewRole;
