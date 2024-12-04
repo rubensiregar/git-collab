@@ -5,5 +5,10 @@ import { Router } from "express";
 const route = Router();
 
 // di sini kumpulan router
+route.post("/", );
+route.get("/", );
+route.get("/:id", );
+route.patch("/:id", );
+route.delete("/:id", );
 
 export default route;
