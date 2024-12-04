@@ -38,5 +38,18 @@ const getDetailRole = async (data: any): Promise<any> => {
         };
     }
 };
+const updateRole = async (id: any, data: any): Promise<any> => {
+    try {
+        return await prisma.role.update({
+            data: data,
+            where: { id: parseInt(id) },
+        });
+    } catch (error) {
+        throw {
+            rc: 400,
+            message: "role tidak ditemukan",
+        };
+    }
+};
 
-export { createNewRole, getListRole, getDetailRole };
+export { createNewRole, getListRole, getDetailRole, updateRole };

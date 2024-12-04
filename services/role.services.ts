@@ -1,4 +1,9 @@
-import { createNewRole, getDetailRole, getListRole } from "../dal/role.dal";
+import {
+    createNewRole,
+    getDetailRole,
+    getListRole,
+    updateRole,
+} from "../dal/role.dal";
 
 interface IRole {
     name: string;
@@ -25,10 +30,13 @@ const serviceGetRole = async (data: any): Promise<any> => {
     }
 };
 
-const serviceUpdateRole = async (data: IRole): Promise<any> => {
+const serviceUpdateRole = async (id: any, data: IRole): Promise<any> => {
     try {
-        const newUser = await createNewRole;
-        return newUser;
+        if (!data.name) {
+            throw { rc: 400, message: "data tidak boleh kosong" };
+        }
+        const updatedRole = await updateRole(id, data);
+        return updatedRole;
     } catch (error) {
         throw error;
     }
