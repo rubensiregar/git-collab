@@ -71,3 +71,4 @@ export const deleteRole = async (req: Request, res: Response): Promise<any> => {
         });
     }
 };
+export const getAllRoles = async () => {};
